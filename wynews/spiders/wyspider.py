@@ -19,8 +19,9 @@ class wy_spider(scrapy.Spider):
     def parse_list(self, response):
         soup = BeautifulSoup(response.text, 'lxml')
         # print(response.txt)
-        res = soup.select('.tabContents table tr')
-        print(res)
+        res = soup.select_one('.area-half.left .tabContents')
+        res = res.select('table tr')
+        # print(res)
         news_list = []
         for element in res:
             if element.select('a'):
